@@ -44,7 +44,7 @@
 		<cfreturn stResponse />
 	</cffunction>
 	
-	<cffunction name="verifyEmailAddress" access="public" returntype="String" hint="Verifies an email address. variables action causes a confirmation email message to be sent to the specified address.">
+	<cffunction name="verifyEmailAddress" access="public" returntype="any" hint="Verifies an email address. variables action causes a confirmation email message to be sent to the specified address.">
 		<cfargument name="emailAddress" type="string" required="true" hint="The email address to be verified.">
 		
 		<cfset var stResponse = createResponse() />
