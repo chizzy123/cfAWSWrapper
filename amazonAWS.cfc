@@ -87,7 +87,7 @@
 		<cfargument name="body" type="string" required="true" >
 		<cfargument name="requestMethod" type="string" required="false" default="" >
 		<cfargument name="version" type="string" required="false" default="" >
-		<cfargument name="protocol" type="string" required="false" default="http://" >
+		<cfargument name="protocol" type="string" required="false" default="https://" >
 		<cfargument name="params" type="string" required="false" default="" >
 		<cfargument name="signatureOrder" type="string" required="false" default="body,AWSAccessKeyId,SignatureMethod,SignatureVersion,Timestamp,signature,params" >
 		<cfargument name="skipEncryption" type="string" required="false" default="" >
@@ -116,7 +116,7 @@
 		<cfelse>	
 			<cfset formattedTime = createFormattedTime(iso=false) />
 			<cfset signature = createSignature(formattedTime,arguments.secretAccesskey) />
-			<cfhttp method="POST" url="#arguments.endPoint#" charset="UTF-8" result="result" >
+			<cfhttp method="POST" url="#arguments.protocol##arguments.endPoint#" charset="UTF-8" result="result" >
 				<cfhttpparam type="header" name="X-Amzn-Authorization" value="AWS3-HTTPS AWSAccessKeyId=#arguments.awsAccessKeyId#, Algorithm=HmacSHA256, Signature=#signature#" >
 				<cfhttpparam type="header" name="Date" value="#formattedTime#"/>
 				<cfhttpparam type="header" name="Content-Type" value="application/x-www-form-urlencoded"/>
